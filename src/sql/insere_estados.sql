@@ -1,27 +1,345 @@
-INSERT INTO estados (nome_estado, id_pais, sigla_estado, usuario) VALUES ("Acre",(SELECT id_chave_pais from paises WHERE nome_pais like "Brasil") ," AC", "victor");
-INSERT INTO estados (nome_estado, id_pais, sigla_estado, usuario) VALUES ("Alagoas",(SELECT id_chave_pais from paises WHERE nome_pais like "Brasil") ," AL", "victor");
-INSERT INTO estados (nome_estado, id_pais, sigla_estado, usuario) VALUES ("Amapá",(SELECT id_chave_pais from paises WHERE nome_pais like "Brasil") ," AP", "victor");
-INSERT INTO estados (nome_estado, id_pais, sigla_estado, usuario) VALUES ("Amazonas",(SELECT id_chave_pais from paises WHERE nome_pais like "Brasil") ," AM", "victor");
-INSERT INTO estados (nome_estado, id_pais, sigla_estado, usuario) VALUES ("Bahia",(SELECT id_chave_pais from paises WHERE nome_pais like "Brasil") ," BA", "victor");
-INSERT INTO estados (nome_estado, id_pais, sigla_estado, usuario) VALUES ("Ceará",(SELECT id_chave_pais from paises WHERE nome_pais like "Brasil") ," CE", "victor");
-INSERT INTO estados (nome_estado, id_pais, sigla_estado, usuario) VALUES ("Distrito Federal",(SELECT id_chave_pais from paises WHERE nome_pais like "Brasil") ," DF", "victor");
-INSERT INTO estados (nome_estado, id_pais, sigla_estado, usuario) VALUES ("Espírito Santo",(SELECT id_chave_pais from paises WHERE nome_pais like "Brasil") ," ES", "victor");
-INSERT INTO estados (nome_estado, id_pais, sigla_estado, usuario) VALUES ("Goiás",(SELECT id_chave_pais from paises WHERE nome_pais like "Brasil") ," GO", "victor");
-INSERT INTO estados (nome_estado, id_pais, sigla_estado, usuario) VALUES ("Maranhão",(SELECT id_chave_pais from paises WHERE nome_pais like "Brasil") ," MA", "victor");
-INSERT INTO estados (nome_estado, id_pais, sigla_estado, usuario) VALUES ("Mato Grosso",(SELECT id_chave_pais from paises WHERE nome_pais like "Brasil") ," MT", "victor");
-INSERT INTO estados (nome_estado, id_pais, sigla_estado, usuario) VALUES ("Mato Grosso do Sul",(SELECT id_chave_pais from paises WHERE nome_pais like "Brasil") ," MS", "victor");
-INSERT INTO estados (nome_estado, id_pais, sigla_estado, usuario) VALUES ("Minas Gerais",(SELECT id_chave_pais from paises WHERE nome_pais like "Brasil") ," MG", "victor");
-INSERT INTO estados (nome_estado, id_pais, sigla_estado, usuario) VALUES ("Pará",(SELECT id_chave_pais from paises WHERE nome_pais like "Brasil") ," PA", "victor");
-INSERT INTO estados (nome_estado, id_pais, sigla_estado, usuario) VALUES ("Paraíba",(SELECT id_chave_pais from paises WHERE nome_pais like "Brasil") ," PB", "victor");
-INSERT INTO estados (nome_estado, id_pais, sigla_estado, usuario) VALUES ("Paraná",(SELECT id_chave_pais from paises WHERE nome_pais like "Brasil") ," PR", "victor");
-INSERT INTO estados (nome_estado, id_pais, sigla_estado, usuario) VALUES ("Pernambuco",(SELECT id_chave_pais from paises WHERE nome_pais like "Brasil") ," PE", "victor");
-INSERT INTO estados (nome_estado, id_pais, sigla_estado, usuario) VALUES ("Piauí",(SELECT id_chave_pais from paises WHERE nome_pais like "Brasil") ," PI", "victor");
-INSERT INTO estados (nome_estado, id_pais, sigla_estado, usuario) VALUES ("Rio de Janeiro",(SELECT id_chave_pais from paises WHERE nome_pais like "Brasil") ," RJ", "victor");
-INSERT INTO estados (nome_estado, id_pais, sigla_estado, usuario) VALUES ("Rio Grande do Norte",(SELECT id_chave_pais from paises WHERE nome_pais like "Brasil") ," RN", "victor");
-INSERT INTO estados (nome_estado, id_pais, sigla_estado, usuario) VALUES ("Rio Grande do Sul",(SELECT id_chave_pais from paises WHERE nome_pais like "Brasil") ," RS", "victor");
-INSERT INTO estados (nome_estado, id_pais, sigla_estado, usuario) VALUES ("Rondônia",(SELECT id_chave_pais from paises WHERE nome_pais like "Brasil") ," RO", "victor");
-INSERT INTO estados (nome_estado, id_pais, sigla_estado, usuario) VALUES ("Roraima",(SELECT id_chave_pais from paises WHERE nome_pais like "Brasil") ," RR", "victor");
-INSERT INTO estados (nome_estado, id_pais, sigla_estado, usuario) VALUES ("Santa Catarina",(SELECT id_chave_pais from paises WHERE nome_pais like "Brasil") ," SC", "victor");
-INSERT INTO estados (nome_estado, id_pais, sigla_estado, usuario) VALUES ("São Paulo",(SELECT id_chave_pais from paises WHERE nome_pais like "Brasil") ," SP", "victor");
-INSERT INTO estados (nome_estado, id_pais, sigla_estado, usuario) VALUES ("Sergipe",(SELECT id_chave_pais from paises WHERE nome_pais like "Brasil") ," SE", "victor");
-INSERT INTO estados (nome_estado, id_pais, sigla_estado, usuario) VALUES ("Tocantins",(SELECT id_chave_pais from paises WHERE nome_pais like "Brasil") ," TO", "victor");
+SET FOREIGN_KEY_CHECKS=0;
+	DROP TABLE IF EXISTS `paises`;
+	drop table if exists estados;
+SET FOREIGN_KEY_CHECKS=1;
+
+
+
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `paises` (
+  `pais_id` double NOT NULL,
+  `nome_pais` varchar(200) DEFAULT NULL,
+  `country_name` varchar(200) DEFAULT NULL,
+  `pais_bacen` varchar(4) DEFAULT NULL,
+  `pais_sigla` varchar(3) DEFAULT NULL,
+  `pais_sigla_iso` varchar(2) DEFAULT NULL,
+  `pais_iso` varchar(4) DEFAULT NULL,
+  `id_alfacomerp` double DEFAULT NULL,
+  `cod_pais` double DEFAULT NULL,
+  `visivel` double NOT NULL,
+   unique(nome_pais),
+   unique(country_name),
+   unique(pais_bacen),
+   unique(pais_sigla),
+   unique(pais_sigla_iso),
+   unique(pais_iso),
+   unique(id_alfacomerp),
+   unique(cod_pais)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `paises`
+--
+
+LOCK TABLES `paises` WRITE;
+/*!40000 ALTER TABLE `paises` DISABLE KEYS */;
+INSERT INTO `paises` VALUES (46,'Ilhas Cocos','Cocos','1651','CCK','CC','166',50,1651,1),
+(66,'Guine-Equatorial','Equatorial Guinea','3310','GNQ','GQ','226',102,3310,1),
+(67,'Eritreia','Eritrea','2437','ERI','ER','232',70,2437,1),
+(68,'Estônia','Estonia','2518','EST','EE','233',76,2518,1),
+(69,'Etiópia','Ethiopia','2534','ETH','ET','231',77,2534,1),
+(7,'Angola','Angola','400','AGO','AO','24',6,400,1),
+(71,'Ilhas Faroe','Faroe Islands','2593','FRO','FO','234',79,2593,1),
+(72,'Fiji','Fiji','8702','FJI','FJ','242',80,8702,1),
+(73,'Finlândia','Finland','2712','FIN','FI','246',82,2712,1),
+(74,'França','France','2755','FRA','FR','250',84,2755,1),
+(76,'Guiana francesa','French Guiana','3255','GUF','GF','254',99,3255,1),
+(77,'Polinésia Francesa','French Polynesia','5991','PYF','PF','258',180,5991,1),
+(78,'Territórios Franceses do Sul','French Southern Territories','3607','ATF','TF','260',257,3607,1),
+(79,'Gabão','Gabon','2810','GAB','GA','266',85,2810,1),
+(8,'Anguilla','Anguilla','418','AIA','AI','660',7,418,1),
+(80,'Gambia','Gambia','2852','GMB','GM','270',87,2852,1),
+(81,'Georgia','Georgia','2917','GEO','GE','268',89,2917,1),
+(82,'Alemanha','Germany','230','DEU','DE','276',4,230,1),
+(83,'Gana','Ghana','2895','GHA','GH','288',88,2895,1),
+(84,'Gibraltar','Gibraltar','2933','GIB','GI','292',90,2933,1),
+(85,'Grécia','Greece','3018','GRC','GR','300',93,3018,1),
+(86,'Groenlândia','Greenland','3050','GRL','GL','304',94,3050,1),
+(87,'Granada','Grenada','2976','GRD','GD','308',92,2976,1),
+(88,'Guadalupe','Guadeloupe','3093','GLP','GP','312',95,3093,1),
+(89,'Guam','Guam','3131','GUM','GU','316',96,3131,1),
+(9,'Antártida','Antarctica','420','ATA','AQ','10',91,420,1),
+(90,'Guatemala','Guatemala','3174','GTM','GT','320',97,3174,1),
+(91,'Guine','Guinea','3298','GIN','GN','324',100,3298,1),
+(92,'Guine-Bissau','Guinea-Bissau','3344','GNB','GW','624',101,3344,1),
+(93,'Guiana','Guyana','3379','GUY','GY','328',98,3379,1),
+(94,'Haiti','Haiti','3417','HTI','HT','332',103,3417,1),
+(95,'Ilhas Heard e Ilhas Mc Donald','Heard and Mc Donald Islands','3603','HMD','HM','334',256,3603,1),
+(97,'Honduras','Honduras','3450','HND','HN','340',105,3450,1),
+(98,'Hong Kong','Hong Kong','3514','HKG','HK','344',106,3514,1),
+(99,'Hungria','Hungary','3557','HUN','HU','348',107,3557,1),
+(75,'Antilhas Holandesas','Netherlands Antilles','0477','ANT','AH','009',9,477,1),
+(153,'Ilhas Canárias','Canary Islands','1511','CRY','IC','040',40,1511,1),
+(242,'Ilhas Johnston','Johnston Islands','122','IJH','IJ','122',122,3964,1),
+(244,'Lebuan','Lebuan','126','LEB','LE','126',126,3235,1),
+(245,'Ilha da Madeira','Wood Island','138','WDI','WI','138',138,4525,1),
+(250,'Ilhas Midway','Midway Islands','154','MDI','MI','154',154,4901,1),
+(251,'Ilha Wake','Wake Island','240','WKI','WK','240',240,8737,1),
+(70,'Ilhas Malvinas','Falkland Islands','2550','FLK','FK','238',78,2550,1),
+(254,'TERRAS AUSTRAIS E ANTARTICAS FRANCESAS','FRENCH AUSTRALIAN AND ANTARCTIC LAND','7811','TAF','TA','7811',247,7811,1),
+(96,'Vaticano - Sanfa Fé','Holy See - Vatican City State','8486','VAT','VA','336',235,8486,1),
+(257,'BONAIRE','BONAIRE','990','BNR','BX','535',258,990,1),
+(241,'Ilha do Canal Jersey','Bailiwick of Jersey','1508','JEY','JE','832',39,1504,1),
+(243,'Ilha de Man','Isle of Man','3595','IMN','IM','833',144,3595,1),
+(247,'Republica Sérvia','Serbia Srbija','7370','SRB','RS','688',250,7370,1),
+(248,'Sudao do Sul','South Sudan','7600','SSD','SS','728',248,7600,1),
+(249,'Zona do Canal do Panamá','Zona del Canal de Panamá','8958','ZCP','ZP','8958',244,8958,1),
+(25,'Bermudas','Bermuda','906','BMU','BM','60',26,906,1),
+(252,'Palestina','Palestine – Dawlat Filas?in','5780','PSE','PS','275',253,5780,1),
+(253,'Ilhas Aland','Åland Islands','153','ALA','AX','248',71,153,1),
+(255,'Curaçao','Curaçao','200','CUW','CW','531',86,200,1),
+(256,'Ilha de São Martinho','Saint Martin','6998','MAF','MF','663',251,6998,1),
+(258,'Bonaire, Santo Eustáquio e Saba','Bonaire, Sint Eustatiusand Saba','6939','BLM','BL','652',252,6939,1),
+(26,'Butão','Bhutan','1198','BTN','BT','64',34,1198,1),
+(27,'Bolívia','Bolivia','973','BOL','BO','68',27,973,1),
+(28,'Bósnia-herzegovina','Bosnia and Herzegowina','981','BIH','BA','70',28,981,1),
+(29,'Botsuana','Botswana','1015','BWA','BW','72',29,1015,1),
+(3,'Albânia','Albania','175','ALB','AL','8',3,175,1),
+(30,'Ilha Bouvet','Bouvet Island','1023','BVT','BV','74',111,1023,1),
+(31,'Território Britânico do Oceano Indico','British Indian Ocean Territory','7820','IOT','IO','86',219,7820,1),
+(32,'Brunei Darussalam','Brunei Darussalam','1082','BRN','BN','96',30,1082,1),
+(33,'Bulgária','Bulgaria','1112','BGR','BG','100',31,1112,1),
+(34,'Burkina Faso','Burkina Faso','310','BFA','BF','854',32,310,1),
+(35,'Burundi','Burundi','1155','BDI','BI','108',33,1155,1),
+(36,'Camboja','Cambodia','1414','KHM','KH','116',37,1414,1),
+(37,'Camarões','Cameroon','1457','CMR','CM','120',36,1457,1),
+(38,'Canada','Canada','1490','CAN','CA','124',38,1490,1),
+(39,'Cabo Verde','Cape Verde','1279','CPV','CV','132',35,1279,1),
+(4,'Argélia','Algeria','590','DZA','DZ','12',11,590,1),
+(40,'Ilhas Cayman','Cayman Islands','1376','CYM','KY','136',42,1376,1),
+(41,'Republica Centro-Africana','Central African Republic','6408','CAF','CF','140',187,6408,1),
+(42,'Chade','Chad','7889','TCD','TD','148',44,7889,1),
+(43,'Chile','Chile','1589','CHL','CL','152',45,1589,1),
+(44,'China','China','1600','CHN','CN','156',46,1600,1),
+(45,'Ilha Christmas – Navidad – Natal','Christmas Island','5118','CXR','CX','162',48,5118,1),
+(47,'Colômbia','Colombia','1694','COL','CO','170',51,1694,1),
+(48,'Comores','Comoros','1732','COM','KM','174',52,1732,1),
+(5,'Samoa Americana','American Samoa','6912','ASM','AS','16',196,6912,1),
+(51,'Ilhas Cook','Cook Islands','1830','COK','CK','184',55,1830,1),
+(52,'Costa Rica','Costa Rica','1961','CRI','CR','188',59,1961,1),
+(53,'Costa do Marfim','Cote d`Ivoire','1937','CIV','CI','384',58,1937,1),
+(55,'Cuba','Cuba','1996','CUB','CU','192',62,1996,1),
+(56,'Chipre','Cyprus','1635','CYP','CY','196',47,1635,1),
+(57,'Republica Tcheca','Czech Republic','7919','CZE','CZ','203',218,7919,1),
+(58,'Dinamarca','Denmark','2321','DNK','DK','208',63,2321,1),
+(59,'Djibuti','Djibouti','7838','DJI','DJ','262',64,7838,1),
+(6,'Andorra','Andorra','370','AND','AD','20',5,370,1),
+(60,'Dominica','Dominica','2356','DMA','DM','212',65,2356,1),
+(61,'Republica Dominicana','Dominican Republic','6475','DOM','DO','214',188,6475,1),
+(62,'Timor Leste','East Timor','7951','TLS','TL','626',220,7951,1),
+(63,'Equador','Ecuador','2399','ECU','EC','218',69,2399,1),
+(64,'Egito','Egypt','2402','EGY','EG','818',66,2402,1),
+(65,'El Salvador','El Salvador','6874','SLV','SV','222',67,6874,1),
+(184,'San Marino','San Marino','6971','SMR','SM','674',197,6971,1),
+(185,'São Tome e Príncipe','Sao Tome and Principe','7200','STP','ST','678',202,7200,1),
+(186,'Arábia Saudita','Saudi Arabia','531','SAU','SA','682',10,531,1),
+(187,'Senegal','Senegal','7285','SEN','SN','686',204,7285,1),
+(188,'Seychelles','Seychelles','7315','SYC','SC','690',206,7315,1),
+(189,'Serra Leoa','Sierra Leone','7358','SLE','SL','694',205,7358,1),
+(19,'Bangladesh','Bangladesh','817','BGD','BD','50',20,817,1),
+(190,'Cingapura','Singapore','7412','SGP','SG','702',49,7412,1),
+(192,'Eslovênia','Slovenia','2461','SVN','SI','705',73,2461,1),
+(193,'Ilhas Salomão','Solomon Islands','6777','SLB','SB','90',194,6777,1),
+(194,'Somalia','Somalia','7480','SOM','SO','706',208,7480,1),
+(195,'África do Sul','South Africa','7560','ZAF','ZA','710',2,7560,1),
+(196,'Ilhas Geórgia do Sul e Sandwich do Sul','South Georgia and the South Sandwich Islands','2925','SGS','GS','239',172,2925,1),
+(197,'Espanha','Spain','2453','ESP','ES','724',74,2453,1),
+(198,'Sri Lanka','Sri Lanka','7501','LKA','LK','144',209,7501,1),
+(199,'Santa Helena','Saint Helena','7102','SHN','SH','654',198,7102,1),
+(2,'Afeganistão','Afghanistan','132','AFG','AF','4',1,132,1),
+(20,'Barbados','Barbados','833','BRB','BB','52',21,833,1),
+(200,'São Pedro e Miquelon','Saint Pierre and Miquelon','7005','SPM','PM','666',201,7005,1),
+(201,'Sudão','Sudan','7595','SDN','SD','729',211,7595,1),
+(202,'Suriname','Suriname','7706','SUR','SR','740',214,7706,1),
+(203,'Ilhas Svalbard e Jan Mayen','Svalbard and Jan Mayen Islands','7552','SJM','SJ','744',249,7552,1),
+(204,'Suazilândia – Eswatini','Swaziland','7544','SWZ','SZ','748',210,7544,1),
+(205,'Suécia','Sweden','7641','SWE','SE','752',212,7641,1),
+(206,'Suíça','Switzerland','7676','CHE','CH','756',213,7676,1),
+(207,'Síria – Republica Árabe','Syrian Arab Republic','7447','SYR','SY','760',207,7447,1),
+(208,'Taiwan – Formosa','Taiwan','1619','TWN','TW','158',83,1619,1),
+(209,'Tadjiquistao','Tajikistan','7722','TJK','TJ','762',215,7722,1),
+(21,'Belarus','Belarus','850','BLR','BY','112',22,850,1),
+(210,'Tanzânia','Tanzania','7803','TZA','TZ','834',217,7803,1),
+(211,'Tailândia','Thailand','7765','THA','TH','764',216,7765,1),
+(212,'Togo','Togo','8001','TGO','TG','768',221,8001,1),
+(213,'Toquelau','Tokelau','8052','TKL','TK','772',223,8052,1),
+(214,'Tonga','Tonga','8109','TON','TO','776',222,8109,1),
+(215,'Trinidad e Tobago','Trinidad and Tobago','8150','TTO','TT','780',224,8150,1),
+(216,'Tunísia','Tunisia','8206','TUN','TN','788',225,8206,1),
+(217,'Turquia','Turkey','8273','TUR','TR','792',228,8273,1),
+(218,'Turcomenistão','Turkmenistan','8249','TKM','TM','795',227,8249,1),
+(166,'Panamá','Panama','5800','PAN','PA','591',174,5800,1),
+(219,'Ilhas Turcas e Caicos','Turks and Caicos Islands','8230','TCA','TC','796',226,8230,1),
+(22,'Bélgica','Belgium','876','BEL','BE','56',23,876,1),
+(220,'Tuvalu','Tuvalu','8281','TUV','TV','798',229,8281,1),
+(221,'Uganda','Uganda','8338','UGA','UG','800',231,8338,1),
+(222,'Ucrânia','Ukraine','8311','UKR','UA','804',230,8311,1),
+(223,'Emirados Árabes Unidos','United Arab Emirates','2445','ARE','AE','784',68,2445,1),
+(224,'Reino Unido','United Kingdom','6289','GBR','GB','826',186,6289,1),
+(225,'Estados Unidos da América','United States of America','2496','USA','US','840',75,2496,1),
+(226,'Ilhas Menores Distantes dos Estados Unidos','United States Minor Outlying Islands','8665','USM','UM','581',246,8665,1),
+(227,'Uruguai','Uruguay','8451','URY','UY','858',232,8451,1),
+(228,'Uzbequistão','Uzbekistan','8478','UZB','UZ','860',233,8478,1),
+(229,'Vanuatu','Vanuatu','5517','VUT','VU','548',234,5517,1),
+(23,'Belize','Belize','884','BLZ','BZ','84',24,884,1),
+(230,'Venezuela','Venezuela','8508','VEN','VE','862',236,8508,1),
+(231,'Vietnã','Vietnam','8583','VNM','VN','704',237,8583,1),
+(234,'Ilhas Wallis e Futuna','Wallis and Futuna Islands','8753','WLF','WF','876',241,8753,1),
+(235,'Saara Ocidental','Western Sahara','6858','ESH','EH','732',193,6858,1),
+(236,'Iémen','Yemen','3573','YEM','YE','887',108,3573,1),
+(237,'Iugoslávia','Yugoslavia','3883','YUG','YU','3883',119,3883,1),
+(238,'Zâmbia','Zambia','8907','ZMB','ZM','894',242,8907,1),
+(239,'Zimbabue','Zimbabwe','6653','ZWE','ZW','716',243,6653,1),
+(24,'Benin','Benin','2291','BEN','BJ','204',25,2291,1),
+(191,'Eslovaquia – República Eslovaca','Slovakia - Slovak Republic','2470','SVK','SK','703',72,2470,1),
+(120,'Líbano','Lebanon','4316','LBN','LB','422',129,4316,1),
+(121,'Lesoto','Lesotho','4260','LSO','LS','426',127,4260,1),
+(122,'Libéria','Liberia','4340','LBR','LR','430',130,4340,1),
+(123,'Líbia','Libyan Arab Jamahiriya','4383','LBY','LY','434',131,4383,1),
+(124,'Liechtenstein','Liechtenstein','4405','LIE','LI','438',132,4405,1),
+(125,'Lituânia','Lithuania','4421','LTU','LT','440',133,4421,1),
+(126,'Luxemburgo','Luxembourg','4456','LUX','LU','442',134,4456,1),
+(127,'Macau','Macau','4472','MAC','MO','446',135,4472,1),
+(128,'Macedônia do Norte','North Macedonia','4499','MKD','MK','807',136,4499,1),
+(129,'Madagascar','Madagascar','4502','MDG','MG','450',137,4502,1),
+(13,'Aruba','Aruba','655','ABW','AW','533',14,655,1),
+(130,'Malavi','Malawi','4588','MWI','MW','454',140,4588,1),
+(131,'Malásia','Malaysia','4553','MYS','MY','458',139,4553,1),
+(132,'Maldivas','Maldives','4618','MDV','MV','462',141,4618,1),
+(133,'Mali','Mali','4642','MLI','ML','466',142,4642,1),
+(134,'Malta','Malta','4677','MLT','MT','470',143,4677,1),
+(135,'Ilhas Marshall','Marshall Islands','4766','MHL','MH','584',147,4766,1),
+(136,'Martinica','Martinique','4774','MTQ','MQ','474',148,4774,1),
+(137,'Mauritânia','Mauritania','4880','MRT','MR','478',150,4880,1),
+(138,'Ilhas Maurício','Mauritius','4855','MUS','MU','480',149,4855,1),
+(14,'Austrália','Australia','698','AUS','AU','36',15,698,1),
+(140,'México','Mexico','4936','MEX','MX','484',151,4936,1),
+(141,'Micronesia','Micronesia','4995','FSM','FM','583',153,4995,1),
+(142,'Moldávia','Moldova','4944','MDA','MD','498',156,4944,1),
+(143,'Mônaco','Monaco','4952','MCO','MC','492',157,4952,1),
+(144,'Mongólia','Mongolia','4979','MNG','MN','496',158,4979,1),
+(145,'Montserrat','Montserrat','5010','MSR','MS','500',159,5010,1),
+(146,'Marrocos','Morocco','4740','MAR','MA','504',146,4740,1),
+(147,'Moçambique','Mozambique','5053','MOZ','MZ','508',155,5053,1),
+(149,'Namíbia','Namibia','5070','NAM','NA','516',160,5070,1),
+(15,'Áustria','Austria','728','AUT','AT','40',16,728,1),
+(150,'Nauru','Nauru','5088','NRU','NR','520',161,5088,1),
+(151,'Nepal','Nepal','5177','NPL','NP','524',162,5177,1),
+(152,'Países Baixos','Netherlands','5738','NLD','NL','528',104,5738,1),
+(154,'Nova Caledonia','New Caledonia','5428','NCL','NC','540',169,5428,1),
+(155,'Nova Zelândia','New Zealand','5487','NZL','NZ','554',170,5487,1),
+(156,'Nicarágua','Nicaragua','5215','NIC','NI','558',163,5215,1),
+(157,'Níger','Niger','5258','NER','NE','562',164,5258,1),
+(158,'Nigéria','Nigeria','5282','NGA','NG','566',165,5282,1),
+(159,'Niue','Niue','5312','NIU','NU','570',166,5312,1),
+(16,'Azerbaijão','Azerbaijan','736','AZE','AZ','31',17,736,1),
+(160,'Ilha Norfolk','Norfolk Island','5355','NFK','NF','574',167,5355,1),
+(161,'Ilhas Marianas do Norte','Northern Mariana Islands','4723','MNP','MP','580',145,4723,1),
+(162,'Noruega','Norway','5380','NOR','NO','578',168,5380,1),
+(163,'Oma','Oman','5568','OMN','OM','512',171,5568,1),
+(164,'Paquistão','Pakistan','5762','PAK','PK','586',176,5762,1),
+(165,'Palau','Palau','5754','PLW','PW','585',173,5754,1),
+(259,'Pais de Teste 2','Country test name 2','1000','TPI','TP','999',259,1000,1),
+(49,'Congo','Congo','1775','COG','CG','178',54,1775,1),
+(50,'Republica Democrática do Congo','The Democratic Republic of the Congo','8885','COD','CD','180',53,8885,1),
+(54,'Croácia','Croatia','1953','HRV','HR','191',61,1953,1),
+(139,'Mayotte','Mayotte','4885','MYT','YT','175',255,4885,1),
+(148,'Mianmar','Myanmar','930','MMR','MM','104',152,930,1),
+(240,'Guernsey Ilha do Canal','Bailiwick of Guernsey','1504','GGY','GG','831',115,1508,1),
+(232,'Ilhas Virgens Britânicas','British Virgin Islands','8630','VGB','VG','92',238,8630,1),
+(233,'Ilhas Virgens Americanas','U.S. American Virgin Islands','8664','VIR','VI','850',239,8664,1),
+(246,'Montenegro','Montenegro - Crna Gora','4985','MNE','ME','499',254,4985,1),
+(167,'Papua Nova Guine','Papua New Guinea','5452','PNG','PG','598',175,5452,1),
+(168,'Paraguai','Paraguay','5860','PRY','PY','600',177,5860,1),
+(169,'Peru','Peru','5894','PER','PE','604',178,5894,1),
+(17,'Bahamas','Bahamas','779','BHS','BS','44',18,779,1),
+(170,'Filipinas','Philippines','2674','PHL','PH','608',81,2674,1),
+(171,'Pitcairn','Pitcairn','5932','PCN','PN','612',179,5932,1),
+(172,'Polônia','Poland','6033','POL','PL','616',181,6033,1),
+(173,'Portugal','Portugal','6076','PRT','PT','620',183,6076,1),
+(174,'Porto Rico','Puerto Rico','6114','PRI','PR','630',182,6114,1),
+(175,'Catar','Qatar','1546','QAT','QA','634',41,1546,1),
+(176,'Reunião','Reunion','6602','REU','RE','638',189,6602,1),
+(177,'Romênia','Romania','6700','ROU','RO','642',190,6700,1),
+(178,'Rússia - Federação Russa','Russian Federation','6769','RUS','RU','643',192,6769,1),
+(179,'Ruanda','Rwanda','6750','RWA','RW','646',191,6750,1),
+(18,'Bahrein','Bahrain','809','BHR','BH','48',19,809,1),
+(180,'São Cristovão e Neves','Saint Kitts and Nevis','6955','KNA','KN','659',200,6955,1),
+(181,'Santa Lucia','Saint Lucia','7153','LCA','LC','662',199,7153,1),
+(182,'São Vicente e Granadinas','Saint Vincent and the Grenadines','7056','VCT','VC','670',203,7056,1),
+(183,'Samoa','Samoa','6904','WSM','WS','882',195,6904,1),
+(103,'Ira','Islamic Republic of Iran','3727','IRN','IR','364',112,3727,1),
+(1,'Brasil','Brazil','1058','BRA','BR','76',245,1058,1),
+(10,'Antigua e Barbuda','Antigua and Barbuda','434','ATG','AG','28',8,434,1),
+(100,'Islândia','Iceland','3794','ISL','IS','352',116,3794,1),
+(101,'Índia','India','3611','IND','IN','356',109,3611,1),
+(102,'Indonésia','Indonesia','3654','IDN','ID','360',110,3654,1),
+(104,'Iraque','Iraq','3697','IRQ','IQ','368',113,3697,1),
+(105,'Irlanda','Ireland','3751','IRL','IE','372',114,3751,1),
+(106,'Israel','Israel','3832','ISR','IL','376',117,3832,1),
+(107,'Itália','Italy','3867','ITA','IT','380',118,3867,1),
+(108,'Jamaica','Jamaica','3913','JAM','JM','388',120,3913,1),
+(109,'Japão','Japan','3999','JPN','JP','392',121,3999,1),
+(11,'Argentina','Argentina','639','ARG','AR','32',12,639,1),
+(110,'Jordânia','Jordan','4030','JOR','JO','400',123,4030,1),
+(111,'Cazaquistão','Kazakhstan','1538','KAZ','KZ','398',43,1538,1),
+(112,'Quênia','Kenya','6238','KEN','KE','404',184,6238,1),
+(113,'Kiribati','Kiribati','4111','KIR','KI','296',124,4111,1),
+(114,'Coreia do Norte','North Korea','1872','PRK','KP','408',56,1872,1),
+(115,'Coreia do Sul','South Korea','1902','KOR','KR','410',57,1902,1),
+(116,'Kuwait','Kuwait','1988','KWT','KW','414',60,1988,1),
+(117,'Quirguiz','Kyrgyzstan','6254','KGZ','KG','417',185,6254,1),
+(118,'Laos','Laos','4200','LAO','LA','418',125,4200,1),
+(119,'Letônia','Latvia','4278','LVA','LV','428',128,4278,1),
+(12,'Armênia','Armenia','647','ARM','AM','51',13,647,1);
+/*!40000 ALTER TABLE `paises` ENABLE KEYS */;
+UNLOCK TABLES;
+
+ALTER TABLE paises ADD COLUMN id_chave_pais int FIRST;
+ALTER TABLE paises CHANGE id_chave_pais id_chave_pais int not null AUTO_INCREMENT PRIMARY KEY; 
+
+
+
+create table estados (
+	id_chave_estado int not null auto_increment, 
+	nome_estado varchar(100), 
+	id_pais int, 
+	sigla_estado varchar(2), 
+	usuario varchar(100), 
+	primary key (id_chave_estado), 
+	unique(nome_estado), 
+	foreign key (id_pais) references paises(id_chave_pais), 
+	unique(sigla_estado)
+	) 
+	ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+INSERT INTO estados (nome_estado, id_pais, sigla_estado, usuario) VALUES ("Acre",(SELECT id_chave_pais from paises WHERE nome_pais like "Brasil"), "AC", "victor");
+INSERT INTO estados (nome_estado, id_pais, sigla_estado, usuario) VALUES ("Alagoas",(SELECT id_chave_pais from paises WHERE nome_pais like "Brasil"), "AL", "victor");
+INSERT INTO estados (nome_estado, id_pais, sigla_estado, usuario) VALUES ("Amapá",(SELECT id_chave_pais from paises WHERE nome_pais like "Brasil"), "AP", "victor");
+INSERT INTO estados (nome_estado, id_pais, sigla_estado, usuario) VALUES ("Amazonas",(SELECT id_chave_pais from paises WHERE nome_pais like "Brasil"), "AM", "victor");
+INSERT INTO estados (nome_estado, id_pais, sigla_estado, usuario) VALUES ("Bahia",(SELECT id_chave_pais from paises WHERE nome_pais like "Brasil"), "BA", "victor");
+INSERT INTO estados (nome_estado, id_pais, sigla_estado, usuario) VALUES ("Ceará",(SELECT id_chave_pais from paises WHERE nome_pais like "Brasil"), "CE", "victor");
+INSERT INTO estados (nome_estado, id_pais, sigla_estado, usuario) VALUES ("Distrito Federal",(SELECT id_chave_pais from paises WHERE nome_pais like "Brasil"), "DF", "victor");
+INSERT INTO estados (nome_estado, id_pais, sigla_estado, usuario) VALUES ("Espírito Santo",(SELECT id_chave_pais from paises WHERE nome_pais like "Brasil"), "ES", "victor");
+INSERT INTO estados (nome_estado, id_pais, sigla_estado, usuario) VALUES ("Goiás",(SELECT id_chave_pais from paises WHERE nome_pais like "Brasil"), "GO", "victor");
+INSERT INTO estados (nome_estado, id_pais, sigla_estado, usuario) VALUES ("Maranhão",(SELECT id_chave_pais from paises WHERE nome_pais like "Brasil"), "MA", "victor");
+INSERT INTO estados (nome_estado, id_pais, sigla_estado, usuario) VALUES ("Mato Grosso",(SELECT id_chave_pais from paises WHERE nome_pais like "Brasil"), "MT", "victor");
+INSERT INTO estados (nome_estado, id_pais, sigla_estado, usuario) VALUES ("Mato Grosso do Sul",(SELECT id_chave_pais from paises WHERE nome_pais like "Brasil"), "MS", "victor");
+INSERT INTO estados (nome_estado, id_pais, sigla_estado, usuario) VALUES ("Minas Gerais",(SELECT id_chave_pais from paises WHERE nome_pais like "Brasil"), "MG", "victor");
+INSERT INTO estados (nome_estado, id_pais, sigla_estado, usuario) VALUES ("Pará",(SELECT id_chave_pais from paises WHERE nome_pais like "Brasil"), "PA", "victor");
+INSERT INTO estados (nome_estado, id_pais, sigla_estado, usuario) VALUES ("Paraíba",(SELECT id_chave_pais from paises WHERE nome_pais like "Brasil"), "PB", "victor");
+INSERT INTO estados (nome_estado, id_pais, sigla_estado, usuario) VALUES ("Paraná",(SELECT id_chave_pais from paises WHERE nome_pais like "Brasil"), "PR", "victor");
+INSERT INTO estados (nome_estado, id_pais, sigla_estado, usuario) VALUES ("Pernambuco",(SELECT id_chave_pais from paises WHERE nome_pais like "Brasil"), "PE", "victor");
+INSERT INTO estados (nome_estado, id_pais, sigla_estado, usuario) VALUES ("Piauí",(SELECT id_chave_pais from paises WHERE nome_pais like "Brasil"), "PI", "victor");
+INSERT INTO estados (nome_estado, id_pais, sigla_estado, usuario) VALUES ("Rio de Janeiro",(SELECT id_chave_pais from paises WHERE nome_pais like "Brasil"), "RJ", "victor");
+INSERT INTO estados (nome_estado, id_pais, sigla_estado, usuario) VALUES ("Rio Grande do Norte",(SELECT id_chave_pais from paises WHERE nome_pais like "Brasil"), "RN", "victor");
+INSERT INTO estados (nome_estado, id_pais, sigla_estado, usuario) VALUES ("Rio Grande do Sul",(SELECT id_chave_pais from paises WHERE nome_pais like "Brasil"), "RS", "victor");
+INSERT INTO estados (nome_estado, id_pais, sigla_estado, usuario) VALUES ("Rondônia",(SELECT id_chave_pais from paises WHERE nome_pais like "Brasil"), "RO", "victor");
+INSERT INTO estados (nome_estado, id_pais, sigla_estado, usuario) VALUES ("Roraima",(SELECT id_chave_pais from paises WHERE nome_pais like "Brasil"), "RR", "victor");
+INSERT INTO estados (nome_estado, id_pais, sigla_estado, usuario) VALUES ("Santa Catarina",(SELECT id_chave_pais from paises WHERE nome_pais like "Brasil"), "SC", "victor");
+INSERT INTO estados (nome_estado, id_pais, sigla_estado, usuario) VALUES ("São Paulo",(SELECT id_chave_pais from paises WHERE nome_pais like "Brasil"), "SP", "victor");
+INSERT INTO estados (nome_estado, id_pais, sigla_estado, usuario) VALUES ("Sergipe",(SELECT id_chave_pais from paises WHERE nome_pais like "Brasil"), "SE", "victor");
+INSERT INTO estados (nome_estado, id_pais, sigla_estado, usuario) VALUES ("Tocantins",(SELECT id_chave_pais from paises WHERE nome_pais like "Brasil"), "TO", "victor");
